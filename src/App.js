@@ -14,6 +14,7 @@ const App extends Component {
       password:'',
       isShow: false,
     }
+}    
 
     listenWebsite = e => {
         this.setState({website: e.target.value})
@@ -34,7 +35,7 @@ const App extends Component {
         const classValue = colorsList[Math.floor(Math.random() * 5)]
         const newValues = {
             id: v4(),
-            initialValue: iniial,
+            initialValue: initial,
             websiteName: website,
             userName: username,
             password: password,
@@ -69,18 +70,19 @@ const App extends Component {
             this.setState({latestList: newList, isTrue: caseOf})
         }
 
-        render() {
+        render() 
             const {
-                website,
-                username,
-                password,
-                latestList,
-                isShow,
-                searchInput,
+              website,
+              username,
+              password,
+              latestList,
+              isShow,
+              searchInput,
             } = this.state
             let {isTrue} = this.state
-            const newList = latestList.filter(eachValue => eachValue.websiteName.toLowerCase().includes(searchInput.toLowerCase())),
-            if (newList.length = 0) {
+            const newList = latestList.filter(eachValue => 
+              eachValue.websiteName.toLowerCase().includes(searchInput.toLowerCase())),
+            if (newList.length === 0) {
                 isTrue = false
             } else {
                 isTrue = true
@@ -210,7 +212,8 @@ const App extends Component {
                                 src="https://assets.ccbp.in/frontend/react-js/password-manager-stars-img.png"
                                 className="stars-image"
                                 alt="stars"
-                              />  
+                              />   
+                            )}   
                           </div>
                           <button
                             type="button"
@@ -232,7 +235,7 @@ const App extends Component {
                 </div>
             ) 
         }
-    }
+    
 }
 
 export default App
