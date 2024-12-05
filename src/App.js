@@ -5,7 +5,7 @@ import './App.css'
 
 const colorsList = ['yellow', 'green', 'orange', 'brown', 'blue']
 
-const App extends Component {
+class App extends Component {
     state = {
       isTrue: false,
       latestList: [],
@@ -88,11 +88,11 @@ const App extends Component {
                 isTrue = true
             }
             return (
-                <div className="main-container">
-                  <img
-                    src="https://assets.ccbp.in/frontend/react-js/password-manager-logo-img.png"
-                    className="app-logo"
-                    alt="app logo"
+              <div className="main-container">
+                 <img
+                   src="https://assets.ccbp.in/frontend/react-js/password-manager-logo-img.png"
+                   className="app-logo"
+                   alt="app logo"
                   />
                   <div className="sub-div1">
                     <img
@@ -226,16 +226,16 @@ const App extends Component {
                               className="del-image"
                               alt="delete"
                             />
-                            </button>    
+                          </button>    
                           </li>
                         ))}     
                       </ul>   
                     )}  
-                  </div>
                 </div>
+              </div>  
             ) 
-        }
-    
+       
+        }    
 }
 
 export default App
