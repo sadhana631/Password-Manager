@@ -9,6 +9,7 @@ class App extends Component {
     state = {
       isTrue: false,
       latestList: [],
+      searchInput: '',
       website:'',
       username: '',
       password:'',
@@ -17,15 +18,15 @@ class App extends Component {
 }    
 
     listenWebsite = e => {
-        this.setState({website: e.target.value})
+        this.setState({ website: e.target.value });
     }
 
     listenUsername = e => {
-        this.setState({username: e. target.value})
+        this.setState({ username: e. target.value });
     }
 
     listenPassword = e => {
-        this.setState({password: e.target.value})
+        this.setState({ password: e.target.value });
     }
 
     addContent = e => {
@@ -41,15 +42,13 @@ class App extends Component {
             password: password,
             classAdd: classValue,
         }
-        this.setState( prevState => ({
+        this.setState({
             latestList: [...prevState.latestList, newValues],
             website: '',
             username: '',
             password: '',
             isTrue: true,
-            searchTrue: true,
-            searchInput: true,
-        }))    
+        });
     }
 
     showPassword = e => {
@@ -60,15 +59,14 @@ class App extends Component {
         }
 
         searchList = e => {
-            this.setState({searchInput: e.target.value})
-        }
+            this.setState({ searchInput: e.target.value });
+        };
 
         deleteItem = id => {
             const {latestList} = this.state
-            const newList = latestList.filter(eachValue => eachValue.id === id)
-            const caseOf = newList.length === 0
-            this.setState({latestList: newList, isTrue: caseOf})
-        }
+            const newList = latestList.filter(eachValue => eachValue.id === id);
+            this.setState({ latestList: newList, isTrue: newList.length > 0 });
+        };
 
         render() 
             const {
@@ -80,8 +78,10 @@ class App extends Component {
               searchInput,
             } = this.state
             let {isTrue} = this.state
+            const searchValue = searchInput || '';
             const newList = latestList.filter(eachValue => 
-              eachValue.websiteName.toLowerCase().includes(searchInput.toLowerCase())),
+              eachValue.websiteName.toLowerCase().includes(searchValue.toLowerCase())
+            );  
             if (newList.length === 0) {
                 isTrue = false
             } else {
@@ -201,7 +201,7 @@ class App extends Component {
                       <ul className="result-container">
                         {newList.map(eachValue => (
                           <li className="item-list" id={eachValue.id} key={eachValue.id}>
-                          <p className={`initial ${eachValue.classAdd}`}>
+                          <p className={`initial ${eachValue.classAdd}`}>{eachValue.initialValue}
                            {eachValue.iniialValue}
                           </p>
                           <div className="list-content">
@@ -235,7 +235,7 @@ class App extends Component {
               </div>  
             ) 
        
-        }    
+        }      
 }
 
 export default App
