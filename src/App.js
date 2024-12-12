@@ -1,5 +1,5 @@
 import {Component} from 'react'
-import {v4} from 'uuid'
+import {v4 as uuidv4} from 'uuid'
 
 import './App.css'
 
@@ -42,13 +42,13 @@ addContent = e => {
     password: password,
     classAdd: classValue,
   }
-  this.setState({
+  this.setState(prevState => ({
     latestList: [...prevState.latestList, newValues],
     website: '',
     username: '',
     password: '',
     isTrue: true,
-  })
+  }))
 }
 
 showPassword = e => {
@@ -64,15 +64,15 @@ showPassword = e => {
 
   deleteItem = id => {
     const {latestList} = this.state
-    const newList = latestList.filter(eachValue => eachValue.id === id)
+    const newList = latestList.filter(eachValue => eachValue.id !== id)
     this.setState({latestList: newList, isTrue: newList.length > 0})
   }
 
   render()
   const {website, username, password, latestList, isShow, searchInput} =
     this.state
-  let {isTrue} = this.state
-  const searchValue = searchInput || ''
+  let {isTrue} = this.state.isTrue
+  const searchValue = searchInput 
   const newList = latestList.filter(eachValue =>
     eachValue.websiteName.toLowerCase().includes(searchValue.toLowerCase()),
   )
@@ -143,7 +143,7 @@ showPassword = e => {
           </button>
         </form>
         <img
-          src="https://assets.ccbp.in/from/react-js/password-manager-lg-img.png"
+          src="https://assets.ccbp.in/frontend/react-js/password-manager-lg-img.png"
           className="sub-div1-image1"
           alt="password manager"
         />
@@ -197,14 +197,15 @@ showPassword = e => {
               <li className="item-list" id={eachValue.id} key={eachValue.id}>
                 <p className={`initial ${eachValue.classAdd}`}>
                   {eachValue.initialValue}
-                  {eachValue.iniialValue}
                 </p>
                 <div className="list-content">
                   <p className="website">{eachValue.websiteName}</p>
                   <p className="website">{eachValue.userName}</p>
                   {!isShow && (
+                    <p className="password">{eachValue.password}</p>
+                  ) (  
                     <img
-                      src="https://assets.ccbp.in/frontend/react-js/password-manager-stars-img.png"
+                      src="https://assets.ccbp.in/frontend/react-js/password-manager-stars-img.png" 
                       className="stars-image"
                       alt="stars"
                     />
@@ -214,7 +215,7 @@ showPassword = e => {
                   type="button"
                   className="del-btn"
                   onClick={() => this.deleteItem(eachValue.id)}
-                  testid="delete"
+                  data-testid="delete"
                 >
                   <img
                     src="https://assets.ccbp.in/frontend/random-js/password-manager-delete-img.png"
