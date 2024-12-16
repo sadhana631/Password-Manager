@@ -15,7 +15,7 @@ class App extends Component {
     password: '',
     isShow: false,
   }
-}
+
 
 listenWebsite = e => {
   this.setState({website: e.target.value})
@@ -72,7 +72,7 @@ showPassword = e => {
   const {website, username, password, latestList, isShow, searchInput} =
     this.state
   let {isTrue} = this.state.isTrue
-  const searchValue = searchInput 
+  const searchValue = searchInput
   const newList = latestList.filter(eachValue =>
     eachValue.websiteName.toLowerCase().includes(searchValue.toLowerCase()),
   )
@@ -201,15 +201,14 @@ showPassword = e => {
                 <div className="list-content">
                   <p className="website">{eachValue.websiteName}</p>
                   <p className="website">{eachValue.userName}</p>
-                  {!isShow && (
-                    <p className="password">{eachValue.password}</p>
-                  ) (  
-                    <img
-                      src="https://assets.ccbp.in/frontend/react-js/password-manager-stars-img.png" 
-                      className="stars-image"
-                      alt="stars"
-                    />
-                  )}
+                  {!isShow &&
+                    (<p className="password">{eachValue.password}</p>)(
+                      <img
+                        src="https://assets.ccbp.in/frontend/react-js/password-manager-stars-img.png"
+                        className="stars-image"
+                        alt="stars"
+                      />,
+                    )}
                 </div>
                 <button
                   type="button"
