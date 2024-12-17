@@ -33,7 +33,7 @@ addContent = e => {
   e.preventDefault()
   const {username, website, password} = this.state
   const initial = website.slice(0, 1).toUpperCase()
-  const classValue = colorsList[Math.floor(Math.random() * 5)]
+  const classValue = colorsList[Math.floor(Math.random() * colorsList.length)]
   const newValues = {
     id: v4(),
     initialValue: initial,
@@ -71,7 +71,7 @@ showPassword = e => {
   render()
   const {website, username, password, latestList, isShow, searchInput} =
     this.state
-  let {isTrue} = this.state.isTrue
+  let {isTrue} = this.state
   const searchValue = searchInput
   const newList = latestList.filter(eachValue =>
     eachValue.websiteName.toLowerCase().includes(searchValue.toLowerCase()),
@@ -194,21 +194,22 @@ showPassword = e => {
         {isTrue && (
           <ul className="result-container">
             {newList.map(eachValue => (
-              <li className="item-list" id={eachValue.id} key={eachValue.id}>
+              <li className="item-list" key={eachValue.id}>
                 <p className={`initial ${eachValue.classAdd}`}>
                   {eachValue.initialValue}
                 </p>
                 <div className="list-content">
                   <p className="website">{eachValue.websiteName}</p>
                   <p className="website">{eachValue.userName}</p>
-                  {!isShow &&
-                    (<p className="password">{eachValue.password}</p>)(
+                  {!isShow ? (
+                    <p className="password">{eachValue.password}</p>
+                  ) : (
                       <img
                         src="https://assets.ccbp.in/frontend/react-js/password-manager-stars-img.png"
                         className="stars-image"
                         alt="stars"
                       />,
-                    )}
+                  )} 
                 </div>
                 <button
                   type="button"
