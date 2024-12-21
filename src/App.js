@@ -16,72 +16,64 @@ class App extends Component {
     isShow: false,
   }
 
+  listenWebsite = e => {
+    this.setState({website: e.target.value})
+  }
 
-listenWebsite = e => {
-  this.setState({website: e.target.value})
-}
+  listenUsername = e => {
+    this.setState({username: e.target.value})
+  }
 
-listenUsername = e => {
-  this.setState({username: e.target.value})
-}
+  listenPassword = e => {
+    this.setState({password: e.target.value})
+  }
 
-listenPassword = e => {
-  this.setState({password: e.target.value})
-}
-
-addContent = e => {
-  e.preventDefault()
-  const {username, website, password} = this.state
-  const initial = website.slice(0, 1).toUpperCase()
-  const classValue = colorsList[Math.floor(Math.random() * colorsList.length)]
-  const newValues = {
-    id: v4(),
+  addContent = e => {
+   e.preventDefault()
+   const {username, website, password} = this.state
+   const initial = website.slice(0, 1).toUpperCase()
+   const classValue = colorsList[Math.floor(Math.random() * colorsList.length)]
+   const newValues = {
+    id: uuidv4(),
     initialValue: initial,
     websiteName: website,
     userName: username,
     password: password,
     classAdd: classValue,
-  }
-  this.setState(prevState => ({
+   }
+   this.setState(prevState => ({
     latestList: [...prevState.latestList, newValues],
     website: '',
     username: '',
     password: '',
     isTrue: true,
-  }))
-}
-
-showPassword = e => {
-  if (e.target.checked) {
-    this.setState({isShow: true})
-  } else {
-    this.setState({isShow: false})
+   }))
   }
 
+  showPassword = e => {
+   this.setState({isShow: e.target.checked})
+  } 
+
   searchList = e => {
-    this.setState({searchInput: e.target.value})
+   this.setState({searchInput: e.target.value})
   }
 
   deleteItem = id => {
-    const {latestList} = this.state
-    const newList = latestList.filter(eachValue => eachValue.id !== id)
-    this.setState({latestList: newList, isTrue: newList.length > 0})
+   const {latestList} = this.state
+   const newList = latestList.filter(eachValue => eachValue.id !== id)
+   this.setState({latestList: newList, isTrue: newList.length > 0})
   }
-
-  render()
-  const {website, username, password, latestList, isShow, searchInput} =
+  
+  render() {
+   const {website, username, password, latestList, isShow, searchInput} =
     this.state
-  let {isTrue} = this.state
-  const searchValue = searchInput
-  const newList = latestList.filter(eachValue =>
-    eachValue.websiteName.toLowerCase().includes(searchValue.toLowerCase()),
-  )
-  if (newList.length === 0) {
-    isTrue = false
-  } else {
-    isTrue = true
-  }
-  return (
+   const newList = latestList.filter(eachValue =>
+    eachValue.websiteName.toLowerCase().includes(searchInput.toLowerCase()),
+   )
+  
+   const isTrue = newList.length > 0
+
+   return (
     <div className="main-container">
       <img
         src="https://assets.ccbp.in/frontend/react-js/password-manager-logo-img.png"
@@ -201,7 +193,7 @@ showPassword = e => {
                 <div className="list-content">
                   <p className="website">{eachValue.websiteName}</p>
                   <p className="website">{eachValue.userName}</p>
-                  {!isShow ? <p className="password">{eachValue.password}</p>:(
+                  {isShow ? <p className="password">{eachValue.password}</p>:(
                       <img
                         src="https://assets.ccbp.in/frontend/react-js/password-manager-stars-img.png"
                         className="stars-image"
@@ -224,10 +216,11 @@ showPassword = e => {
               </li>
             ))}
           </ul>
-        )}
+        </div>  
       </div>
-    </div>
-  )
-}
+    )
+  }
+}    
 
 export default App
+        
