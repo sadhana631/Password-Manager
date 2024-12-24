@@ -3,7 +3,7 @@ import {v4 as uuidv4} from 'uuid'
 
 import './App.css'
 
-const colorsList = ['yellow', 'green', 'orange', 'brown', 'blue']
+const colorsList = ['yellow','green','orange','brown','blue'];
 
 class App extends Component {
   state = {
@@ -14,8 +14,8 @@ class App extends Component {
     username: '',
     password: '',
     isShow: false,
-  }
-
+  }  
+  
   listenWebsite = e => {
     this.setState({website: e.target.value})
   }
@@ -189,7 +189,7 @@ class App extends Component {
               <li className="item-list" key={eachValue.id}>
                 <p className={`initial ${eachValue.classAdd}`}>
                   {eachValue.initialValue}
-                </p>
+                </p>  
                 <div className="list-content">
                   <p className="website">{eachValue.websiteName}</p>
                   <p className="website">{eachValue.userName}</p>
@@ -218,7 +218,7 @@ class App extends Component {
           </ul>
         </div>  
       </div>
-    )
+   )
   }
 }    
 
