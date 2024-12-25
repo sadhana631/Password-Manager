@@ -31,7 +31,7 @@ class App extends Component {
   addContent = e => {
    e.preventDefault()
    const {username, website, password} = this.state
-   const initial = website.slice(0, 1).toUpperCase()
+   const initial = website.slice(0, 1).toUpperCase() ||'N/A'
    const classValue = colorsList[Math.floor(Math.random() * colorsList.length)]
    const newValues = {
     id: uuidv4(),
